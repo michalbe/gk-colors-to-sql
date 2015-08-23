@@ -1,6 +1,7 @@
 'use strict';
 
 var request = require('request');
+var cheerio = require('cheerio');
 
 var host = 'http://galeriakoloru.pl/dope-classic-spray-graffiti';
 
@@ -8,7 +9,7 @@ var host = 'http://galeriakoloru.pl/dope-classic-spray-graffiti';
 var getSite = function(url, cb){
   request(url, function(err, response, body) {
     try {
-      cb(null, response);
+      cb(null, body);
     } catch (e) {
       cb(new Error('Error on response parsing for ' + url));
     }
@@ -16,5 +17,9 @@ var getSite = function(url, cb){
 };
 
 getSite(host, function(err, resp){
-  console.log(resp);
+  var $ = cheerio.load(resp, {
+    normalizeWhitespace: true
+  });
+
+  console.log($('.colorbox').length);
 });
