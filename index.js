@@ -59,6 +59,9 @@ getSite(host, function(err, resp){
       output[color].name + '\');'
     );
 
-    console.log(shopId);
+    console.log(
+      'INSERT INTO `rabeko`.`dev_attribute_shop` (`id_attribute`, `id_shop`) ' +
+      'VALUES (\'' + output[color].id +'\', \'' + shopId + '\');'
+    );
   }
 });
