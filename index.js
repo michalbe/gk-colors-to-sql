@@ -21,5 +21,5 @@ getSite(host, function(err, resp){
     normalizeWhitespace: true
   });
 
-  console.log($('.colorbox').length);
+  console.log($('.colorbox').find('span').html().split('<br>'));
 });
