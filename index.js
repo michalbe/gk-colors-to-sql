@@ -9,6 +9,7 @@ var host = 'http://galeriakoloru.pl/dope-classic-spray-graffiti';
 var lastId = 27;
 var groupId = 4;
 var langId = 1;
+var shopId = 1;
 
 var getSite = function(url, cb){
   request(url, function(err, response, body) {
@@ -57,5 +58,7 @@ getSite(host, function(err, resp){
       '`name`) VALUES (\'' + output[color].id +'\', \'' + langId + '\', \'' +
       output[color].name + '\');'
     );
+
+    console.log(shopId);
   }
 });
