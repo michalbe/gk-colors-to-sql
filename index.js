@@ -8,6 +8,7 @@ var cheerio = require('cheerio');
 var host = 'http://galeriakoloru.pl/dope-classic-spray-graffiti';
 var lastId = 27;
 var groupId = 4;
+var langId = 1;
 
 var getSite = function(url, cb){
   request(url, function(err, response, body) {
@@ -48,6 +49,13 @@ getSite(host, function(err, resp){
       'INSERT INTO `rabeko`.`dev_attribute` (`id_attribute`, ' +
       '`id_attribute_group`, `color`, `position`) VALUES (\'' +
       output[color].id +'\', \'' + groupId + '\', \'' + output[color].color +
-      '\', \'' + (position++) + '\');');
+      '\', \'' + (position++) + '\');'
+    );
+
+    console.log(
+      'INSERT INTO `rabeko`.`dev_attribute_lang` (`id_attribute`, `id_lang`, ' +
+      '`name`) VALUES (\'' + output[color].id +'\', \'' + langId + '\', \'' +
+      output[color].name + '\');'
+    );
   }
 });
