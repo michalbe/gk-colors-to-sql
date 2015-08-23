@@ -26,8 +26,8 @@ getSite(host, function(err, resp){
   for (var i=0, l=colors.length; i<l; i++){
     color = $(colors[i]);
     output.push({
-      name: color.find('span').html()
-
+      name: color.find('span').html(),
+      color: color.find('.color').css('background-color') || 0
     });
   }
 
