@@ -40,8 +40,8 @@ getSite(host, function(err, resp){
   }
 
   if (texturedColors.length > 0) {
-    console.log('Warning');
-    console.log('Colors ', texturedColors, ' are textures');
+    console.log('/* Warning */');
+    console.log('/* Colors ', texturedColors, ' are textures */');
   }
 
   var position = 0;
