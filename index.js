@@ -16,10 +16,20 @@ var getSite = function(url, cb){
   });
 };
 
+var output = [];
 getSite(host, function(err, resp){
   var $ = cheerio.load(resp, {
     normalizeWhitespace: true
   });
+  var color;
+  var colors = $('.colorbox');
+  for (var i=0, l=colors.length; i<l; i++){
+    color = $(colors[i]);
+    output.push({
+      name: color.find('span').html()
 
-  console.log($('.colorbox').find('span').html().split('<br>'));
+    });
+  }
+
+  console.log(output);
 });
