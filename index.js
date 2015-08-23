@@ -31,7 +31,7 @@ getSite(host, function(err, resp){
   for (var i=0, l=colors.length; i<l; i++){
     color = $(colors[i]);
     output.push({
-      name: color.find('span').html(),
+      name: color.find('span').html().replace('<br>', ' - '),
       color: color.find('.color').css('background-color') ||
         (texturedColors.push(i), 0),
       id: ++lastId
