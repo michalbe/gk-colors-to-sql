@@ -9,6 +9,7 @@ var host = 'http://galeriakoloru.pl/dope-classic-spray-graffiti';
 var lastId = 27;
 var groupId = 4;
 var langId = 1;
+var shopId = 1;
 
 var getSite = function(url, cb){
   request(url, function(err, response, body) {
@@ -31,7 +32,7 @@ getSite(host, function(err, resp){
   for (var i=0, l=colors.length; i<l; i++){
     color = $(colors[i]);
     output.push({
-      name: color.find('span').html(),
+      name: color.find('span').html().replace('<br>', ' - '),
       color: color.find('.color').css('background-color') ||
         (texturedColors.push(i), 0),
       id: ++lastId
@@ -39,8 +40,8 @@ getSite(host, function(err, resp){
   }
 
   if (texturedColors.length > 0) {
-    console.log('Warning');
-    console.log('Colors ', texturedColors, ' are textures');
+    console.log('/* Warning */');
+    console.log('/* Colors ', texturedColors, ' are textures */');
   }
 
   var position = 0;
@@ -56,6 +57,11 @@ getSite(host, function(err, resp){
       'INSERT INTO `rabeko`.`dev_attribute_lang` (`id_attribute`, `id_lang`, ' +
       '`name`) VALUES (\'' + output[color].id +'\', \'' + langId + '\', \'' +
       output[color].name + '\');'
+    );
+
+    console.log(
+      'INSERT INTO `rabeko`.`dev_attribute_shop` (`id_attribute`, `id_shop`) ' +
+      'VALUES (\'' + output[color].id +'\', \'' + shopId + '\');'
     );
   }
 });
